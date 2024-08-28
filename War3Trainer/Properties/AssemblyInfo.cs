@@ -1,7 +1,6 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
@@ -10,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MyFamily")]
-[assembly: AssemblyProduct("War3Trainer")]
+[assembly: AssemblyProduct("War3Helper")]
 [assembly: AssemblyCopyright("Copyleft © MyFamily 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

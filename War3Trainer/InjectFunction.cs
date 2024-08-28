@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 namespace War3Trainer
 {
     //一个工具类,负责加载dll,加载注入功能的配置文件
@@ -12,7 +8,7 @@ namespace War3Trainer
     // 2. 
     internal class InjectFunction
     {
-        [DllImport("RemoteInjectDLL.dll",CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("RemoteInjectDLL.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool injectDLL();
 
         [DllImport("RemoteInjectDLL.dll", CallingConvention = CallingConvention.Cdecl)]

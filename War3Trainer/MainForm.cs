@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using System.IO;
 //using System.Windows;
 
 namespace War3Trainer
@@ -107,7 +107,7 @@ namespace War3Trainer
             // Get a new trainer
             _mainTrainer = new GameTrainer(_currentGameContext);
             ChangeMap = new WindowsApi.ProcessMemory(_currentGameContext.ProcessId);
-            
+
             // Create function tree
             viewFunctions.Nodes.Clear();
             foreach (ITrainerNode currentFunction in _mainTrainer.GetFunctionList())
@@ -313,9 +313,15 @@ namespace War3Trainer
         /************************************************************************/
         private void MenuHelpAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("游戏测试软件，方便修改属性" 
+            MessageBox.Show("游戏测试软件，方便修改属性"
                 + System.Environment.NewLine
-                //+ Application.ProductVersion
+                //+ Application.
+                + "15.0.1.1:    24.8.28"
+                + "发现注入dll的方法会被官方检测,最好是用直接修改内存hook某个绘制函数的方法"
+                + "网易大善人不管你直接修改内存QAQ,war3plugin是储存dzapi的dll,呗混淆了,我还没一点思路"
+                + "分析了一下getrandom函数,随机数好简单呀,可以很快做出来,但是貌似没什么应用场景"
+                + "最近要准备考试,先鸽了......"
+                + System.Environment.NewLine
                 + "15.0.1.0:    24.8.27"
                 + "增加单位无敌和秒杀单位功能,瞬移功能开发中,遇到了点困难"
                 + "打算实现读取鼠标坐标,由绑定的按键触发,瞬移选中单位到地图坐标"
@@ -614,7 +620,7 @@ namespace War3Trainer
                 out nIndex))
             {
                 nIndex = 0;
-                
+
             }
 
             try
@@ -750,7 +756,7 @@ namespace War3Trainer
                 UInt32 minMapUnitAddr0 = 0x370A07;
                 byte[] minMapUnit0 = { 0x75, 0x0C };
                 ChangeMap.WriteBytes(minMapUnit0, (IntPtr)(_currentGameContext._moduleAddress + minMapUnitAddr0), sizeof(byte) * 2, out bytesWriten);
-                
+
                 UInt32 minMapUnitAddr1 = 0x370A0F;
                 byte[] minMapUnit1 = { 0x0F, 0x84 };
                 ChangeMap.WriteBytes(minMapUnit1, (IntPtr)(_currentGameContext._moduleAddress + minMapUnitAddr1), sizeof(byte) * 2, out bytesWriten);
@@ -1027,8 +1033,8 @@ namespace War3Trainer
             {
                 string settingNode = "MapNode" + i;
                 //xmlDoc.SelectSingleNode("//" + settingNode).InnerText = (buttonStatus[i].ToString());
-                XmlNode xmlnode =  xmlDoc.SelectSingleNode("//" + settingNode);
-                if(xmlnode == null)
+                XmlNode xmlnode = xmlDoc.SelectSingleNode("//" + settingNode);
+                if (xmlnode == null)
                 {
                     xmlnode = xmlDoc.CreateElement("MapNode" + i);
                     xmlnode.InnerText = buttonStatus[i].ToString();
@@ -1046,17 +1052,17 @@ namespace War3Trainer
             XmlDocument xmlDoc = new XmlDocument();
             string configFilePath = "UserConfig.xml";
             if (File.Exists(configFilePath))
-            {  
+            {
                 xmlDoc.Load(configFilePath);
             }
-            int []a = new int[20];
-            for(int i = 0; i < 12; i++)
+            int[] a = new int[20];
+            for (int i = 0; i < 12; i++)
             {
                 string settingNode = "MapNode" + i;
                 int settingValue = int.Parse(xmlDoc.SelectSingleNode("//" + settingNode).InnerText);
                 a[i] = settingValue;
             }
-            return a; 
+            return a;
         }
 
         private void checkBox15_CheckedChanged(object sender, EventArgs e)
@@ -1071,12 +1077,12 @@ namespace War3Trainer
                     {
                         if (control is CheckBox checkBox)
                         {
-                            
+
                             int num = 100 + i;
                             string name = "checkBox" + num.ToString();
                             if (checkBox.Name.Equals(name))
                             {
-                                if (buttonStatus[i]==0)
+                                if (buttonStatus[i] == 0)
                                 {
                                     checkBox.Checked = false;
                                 }
@@ -1084,7 +1090,7 @@ namespace War3Trainer
                                 {
                                     checkBox.Checked = true;
                                 }
-                                
+
                             }
                         }
                     }
@@ -1094,7 +1100,7 @@ namespace War3Trainer
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    if(buttonStatus[i] == 0)
+                    if (buttonStatus[i] == 0)
                     {
                         continue;
                     }
@@ -1106,7 +1112,7 @@ namespace War3Trainer
                         {
                             if (checkBox.Name.Equals(name))
                             {
-                                if(checkBox.Checked == true)
+                                if (checkBox.Checked == true)
                                 {
                                     checkBox.Checked = false;
                                 }
@@ -1158,7 +1164,7 @@ namespace War3Trainer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(button2.Text == "尝试注入" || button2.Text == "重试")
+            if (button2.Text == "尝试注入" || button2.Text == "重试")
             {
                 if (!InjectFunction.injectDLL())
                 {
@@ -1175,7 +1181,7 @@ namespace War3Trainer
                 InjectFunction.removeDLL();
                 button2.Text = "尝试注入";
             }
-            
+
         }
 
         private void button101_Click(object sender, EventArgs e)
@@ -1196,6 +1202,11 @@ namespace War3Trainer
         private void button131_Click(object sender, EventArgs e)
         {
             InjectFunction.SendMsg(new IntPtr(3), new IntPtr(0));
+        }
+
+        private void menuHelp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

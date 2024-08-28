@@ -1,0 +1,8 @@
+﻿D:\vs2019\ide\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 中间目录(Debug\)包含从另一个项目(TestDLL.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  CallBackHook.cpp
+D:\vs2019\ide\VC\Tools\MSVC\14.36.32532\include\semaphore(17): warning STL4038: The contents of <semaphore> are available only with C++20 or later.
+C:\Users\Hp\source\repos\RemoteInjectDLL\TestDLL\CallBackHook.cpp(245,1): warning C4405: “ret”: 标识符是保留字
+C:\Users\Hp\source\repos\RemoteInjectDLL\TestDLL\CallBackHook.cpp(206): warning C4731: “SetUnitInvulnerable”: 框架指针寄存器“ebp”被内联程序集代码修改
+C:\Users\Hp\source\repos\RemoteInjectDLL\TestDLL\CallBackHook.cpp(130): warning C4731: “SetUnitLocation”: 框架指针寄存器“ebp”被内联程序集代码修改
+C:\Users\Hp\source\repos\RemoteInjectDLL\TestDLL\CallBackHook.cpp(170): warning C4731: “KillUnit”: 框架指针寄存器“ebp”被内联程序集代码修改
+  TestDLL.vcxproj -> C:\Users\Hp\source\repos\RemoteInjectDLL\bin\GameDLLd.dll

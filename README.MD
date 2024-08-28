@@ -1,6 +1,8 @@
 # War3Helper
 Features have been added to the original open source program War3Trainer(which has since been taken down), in order to give players a better gaming experience, and perhaps to help learn the game's analysis
-
+    
+Thanks to the generous sharing and hard work of the original author, he has an admirable open source spirit
+    
 ### Software overview
 1.  War3Tariner: Modify unit data in War3, such as health, movement speed, attack, and most of the attributes you can see in the Unit editor
 2.  MapHack: Show units, items, skills, resources, mirrors, bullets, and remove fog
@@ -27,4 +29,40 @@ Features have been added to the original open source program War3Trainer(which h
 5.  Understand C#, able to write some simple functions, familiar with common windows controls, able to use c# designer for application interface layout
 6.  The most important thing is the determination to overcome difficulties. You may encounter difficulties such as program errors, environment construction failures, promising ideas failure, etc., you can overcome these, and not only overcome these
 
-- æµ‹è¯•æ¶ˆæ¯é»˜è®¤ä¼šå¼¹å‡ºä¸€ä¸ªå¼¹å‡º,ä½œä¸ºæç¤º.
+# RemoteInjectDLL
+  x86Óëx64Í¨ÓÃµÄÔ¶³Ì×¢ÈëDLL¡¢Ô¶³ÌĞ¶ÔØDLL¡£
+  Ô­×÷ÕßgitµØÖ·:https://github.com/kahotv/RemoteInjectDLL
+## ºËĞÄº¯ÊıËµÃ÷
+  RemoteInjectDLL.hÀï
+```cpp
+//×¢ÈëDLL²¢·µ»ØÄ£¿é¾ä±ú£¨Ö§³Öx64£©
+HMODULE	RemoteInjectDLL	(DWORD pid, const char* path);
+BOOL	RemoteFreeDLL	(DWORD pid, HMODULE hModule);
+```
+
+## ÒÀÀµ
+  ÒÀÀµWindows.h¡¢STL(c++11¼°ÆäÒÔÉÏ)
+
+## ´úÂëÄ¿Â¼½á¹¹
+
+1. GameDLL ÓÃÓÚ×¢ÈëÓÎÏ·µÄDLL,Ö÷Òª°üº¬¹³×Ó»Øµ÷º¯ÊıºÍ¾ßÌå¹¦ÄÜ´úÂë
+2. loadDLL ²âÊÔÊ±Ê¹ÓÃ¸øµÄDLL,¿ÉÒÔÖ÷¶¯¼ÓÔØ±àĞ´ºÃµÄDLL
+3. Remoteinject ×¢ÈëÆ÷,ÓÃÀ´×¢ÈëÓ¦ÓÃ³ÌĞò,Ö»ĞèÒª¸ü¸ÄdllÃû³ÆºÍÒª×¢ÈëµÄÓ¦ÓÃÃû³Æ
+4. RemoteinjectDLL ·â×°ºÃµÄÓÃÀ´×¢ÈëGameDLL,²¢Í¨¹ıwindowsÏûÏ¢»úÖÆ,ºÍ×¢ÈëºóµÄGameDLL½øĞĞÍ¨ĞÅ
+
+## ±àÒë
+  ÒÔRelease-x86»òRelease-x64±àÒë£¬x64±àÒë³öµÄ¶ş½øÖÆÎÄ¼şÒÔx64Îª½áÎ²¡£
+  32Î»EXE×¢Èë32Î»DLLµ½32Î»½ø³Ì£¬64Î»µÄEXE×¢Èë64Î»µÄDLLµ½64Î»½ø³Ì¡£
+## ²âÊÔ·½Ê½
+ **×¢Òâ£ºDLLºÍEXE±ØĞëÍ¬Ä¿Â¼**
+- »·¾³£ºWin10x64
+- ×¢ÈëÆ÷£ºRemoteInjectd.exe
+- DLL£ºGameDLLd.dll
+- ÔËĞĞEXE£¬»á×Ô¶¯×¢Èëµ½¶ÔÓ¦´°¿ÚÃûµÄ½ø³ÌÖĞ,×¢ÈëÆ÷ÖĞÓĞĞ´ºÃµÄÃ¶¾ÙÄ£¿éµÄº¯Êı,¿ÉÒÔÌá¹©Ò»Ğ©ĞÅÏ¢,Ä¬ÈÏÎ´¿ªÆô
+- ²âÊÔÏûÏ¢Ä¬ÈÏ»áµ¯³öÒ»¸öµ¯³ö,×÷ÎªÌáÊ¾.
+
+# ÈçºÎÊ¹ÓÃ?
+1. Éú³ÉGameDLLd.dll
+2. Éú³ÉRemoteInjectDLL.dll
+3. Éú³ÉWar3Helper
+4. ·ÅÔÚÍ¬Ò»¸öÄ¿Â¼ÏÂ,µã»÷ÆäËû¹¦ÄÜÖĞµÄ³¢ÊÔ×¢Èë

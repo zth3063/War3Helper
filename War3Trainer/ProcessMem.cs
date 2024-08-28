@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.InteropServices;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Permissions;
+using System.Text;
 
 namespace War3Trainer.WindowsApi
 {
@@ -60,17 +59,17 @@ namespace War3Trainer.WindowsApi
         [Flags]
         internal enum ProcessAccessFlags : uint
         {
-            None             = 0,
-            Terminate        = 0x00000001,
-            CreateThread     = 0x00000002,
-            VMOperation      = 0x00000008,
-            VMRead           = 0x00000010,
-            VMWrite          = 0x00000020,
-            DupHandle        = 0x00000040,
-            SetInformation   = 0x00000200,
+            None = 0,
+            Terminate = 0x00000001,
+            CreateThread = 0x00000002,
+            VMOperation = 0x00000008,
+            VMRead = 0x00000010,
+            VMWrite = 0x00000020,
+            DupHandle = 0x00000040,
+            SetInformation = 0x00000200,
             QueryInformation = 0x00000400,
-            Synchronize      = 0x00100000,
-            All              = 0x001F0FFF,
+            Synchronize = 0x00100000,
+            All = 0x001F0FFF,
         }
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -103,14 +102,14 @@ namespace War3Trainer.WindowsApi
         [DllImport("psapi.dll")]
         internal static extern bool EnumProcessModules(
             SafeProcessHandle processHandle,
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)] [In][Out] IntPtr[] lphModule,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)][In][Out] IntPtr[] lphModule,
             int cb,
             [MarshalAs(UnmanagedType.U4)] out int needed);
 
         [DllImport("psapi.dll")]
         internal static extern bool EnumProcessModulesEx(
             SafeProcessHandle processHandle,
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)] [In][Out] IntPtr[] lphModule,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)][In][Out] IntPtr[] lphModule,
             int cb,
             [MarshalAs(UnmanagedType.U4)] out int needed,
             uint filterFlag);
@@ -125,14 +124,14 @@ namespace War3Trainer.WindowsApi
             SafeProcessHandle processHandle,
             IntPtr moduleHandle,
             [Out] StringBuilder baseName,
-            [In] [MarshalAs(UnmanagedType.U4)] int size);
+            [In][MarshalAs(UnmanagedType.U4)] int size);
 
         [DllImport("psapi.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true, BestFitMapping = false)]
         internal static extern uint GetModuleBaseName(
             SafeProcessHandle processHandle,
             IntPtr moduleHandle,
             [Out] StringBuilder baseName,
-            [In] [MarshalAs(UnmanagedType.U4)] int size);
+            [In][MarshalAs(UnmanagedType.U4)] int size);
 
         [DllImport("psapi.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true)]
         internal static extern bool GetModuleInformation(
@@ -167,7 +166,7 @@ namespace War3Trainer.WindowsApi
         {
             // Save paramter
             _processId = processId;
-            
+
             // Open handle
             _processHandle = NativeMethods.OpenProcess(
                 (uint)NativeMethods.ProcessAccessFlags.All,

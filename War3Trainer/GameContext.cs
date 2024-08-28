@@ -5,17 +5,17 @@ namespace War3Trainer
 {
     class GameContext
     {
-        public int ProcessId                  { get; private set; }
-        public string ProcessVersion          { get; private set; }
+        public int ProcessId { get; private set; }
+        public string ProcessVersion { get; private set; }
 
-        public UInt32 ThisGameAddress         { get; private set; }
-        public UInt32 UnitListAddress         { get; private set; }
-        public UInt32 MoveSpeedAddress        { get; private set; }
+        public UInt32 ThisGameAddress { get; private set; }
+        public UInt32 UnitListAddress { get; private set; }
+        public UInt32 MoveSpeedAddress { get; private set; }
 
-        public UInt32 AttackAttributesOffset  { get; private set; }
-        public UInt32 HeroAttributesOffset    { get; private set; }
-        public UInt32 ItemsListOffset         { get; private set; }
-        public UInt32 MoveSpeedOffset         { get; private set; }
+        public UInt32 AttackAttributesOffset { get; private set; }
+        public UInt32 HeroAttributesOffset { get; private set; }
+        public UInt32 ItemsListOffset { get; private set; }
+        public UInt32 MoveSpeedOffset { get; private set; }
 
         public uint _moduleAddress;
 
@@ -84,56 +84,56 @@ namespace War3Trainer
             switch (ProcessVersion)
             {
                 case "1.20.4.6074":
-                    ThisGameAddress  = _moduleAddress + 0x87C744;
-                    UnitListAddress  = _moduleAddress + 0x8722BC;
+                    ThisGameAddress = _moduleAddress + 0x87C744;
+                    UnitListAddress = _moduleAddress + 0x8722BC;
                     MoveSpeedAddress = _moduleAddress + 0x55BDF0;
                     break;
                 case "1.21.0.6263":
-                    ThisGameAddress  = _moduleAddress + 0x87D7BC;
-                    UnitListAddress  = _moduleAddress + 0x873334;
+                    ThisGameAddress = _moduleAddress + 0x87D7BC;
+                    UnitListAddress = _moduleAddress + 0x873334;
                     MoveSpeedAddress = _moduleAddress + 0x55FE80;
                     break;
                 case "1.21.1.6300":
-                    ThisGameAddress  = _moduleAddress + 0x87D7BC;
-                    UnitListAddress  = _moduleAddress + 0x873334;
+                    ThisGameAddress = _moduleAddress + 0x87D7BC;
+                    UnitListAddress = _moduleAddress + 0x873334;
                     MoveSpeedAddress = _moduleAddress + 0x55fEA0;
                     break;
                 case "1.22.0.6328":
-                    ThisGameAddress  = _moduleAddress + 0xAA4178;
-                    UnitListAddress  = _moduleAddress + 0xAA2FFC;
+                    ThisGameAddress = _moduleAddress + 0xAA4178;
+                    UnitListAddress = _moduleAddress + 0xAA2FFC;
                     MoveSpeedAddress = _moduleAddress + 0x201190;
                     break;
                 case "1.23.0.6352":
-                    ThisGameAddress  = _moduleAddress + 0xABCFC8;
-                    UnitListAddress  = _moduleAddress + 0xABBE4C;
+                    ThisGameAddress = _moduleAddress + 0xABCFC8;
+                    UnitListAddress = _moduleAddress + 0xABBE4C;
                     MoveSpeedAddress = _moduleAddress + 0x2026D0;
                     break;
                 case "1.24.0.6372":
                 case "1.24.1.6374":
                 case "1.24.2.6378":
                 case "1.24.3.6384":
-                    ThisGameAddress  = _moduleAddress + 0xACE5E0;
-                    UnitListAddress  = _moduleAddress + 0xACD44C;
+                    ThisGameAddress = _moduleAddress + 0xACE5E0;
+                    UnitListAddress = _moduleAddress + 0xACD44C;
                     MoveSpeedAddress = _moduleAddress + 0x202780;
                     break;
                 case "1.24.4.6387":
-                    ThisGameAddress  = _moduleAddress + 0xACE5E0;
-                    UnitListAddress  = _moduleAddress + 0xACD44C;
+                    ThisGameAddress = _moduleAddress + 0xACE5E0;
+                    UnitListAddress = _moduleAddress + 0xACD44C;
                     MoveSpeedAddress = _moduleAddress + 0x2027E0;
                     break;
                 case "1.25.1.6397":
-                    ThisGameAddress  = _moduleAddress + 0xAB7788;
-                    UnitListAddress  = _moduleAddress + 0xAB65F4;
+                    ThisGameAddress = _moduleAddress + 0xAB7788;
+                    UnitListAddress = _moduleAddress + 0xAB65F4;
                     MoveSpeedAddress = _moduleAddress + 0x201AA0;
                     break;
                 case "1.26.0.6401":
-                    ThisGameAddress  = _moduleAddress + 0xAB7788;
-                    UnitListAddress  = _moduleAddress + 0xAB65F4;
+                    ThisGameAddress = _moduleAddress + 0xAB7788;
+                    UnitListAddress = _moduleAddress + 0xAB65F4;
                     MoveSpeedAddress = _moduleAddress + 0x201CD0;
                     break;
                 case "1.27.0.52240":
-                    ThisGameAddress  = _moduleAddress + 0xBE40A8;
-                    UnitListAddress  = _moduleAddress + 0xBE4238;
+                    ThisGameAddress = _moduleAddress + 0xBE40A8;
+                    UnitListAddress = _moduleAddress + 0xBE4238;
                     MoveSpeedAddress = _moduleAddress + 0x5DF420;
                     break;
                 case "1.28.0.7205":
@@ -166,9 +166,9 @@ namespace War3Trainer
                 case "1.24.1.6374":
                 case "1.24.2.6378":
                     AttackAttributesOffset = 0x1E4;
-                    HeroAttributesOffset   = 0x1EC;
-                    ItemsListOffset        = 0x1F4;
-                    MoveSpeedOffset        = 0x1D8;
+                    HeroAttributesOffset = 0x1EC;
+                    ItemsListOffset = 0x1F4;
+                    MoveSpeedOffset = 0x1D8;
                     break;
                 case "1.24.3.6384":
                 case "1.24.4.6387":
@@ -178,9 +178,9 @@ namespace War3Trainer
                 case "1.28.0.7205":
                 case "1.28.5.7680":
                     AttackAttributesOffset = 0x1E8;
-                    HeroAttributesOffset   = 0x1F0;
-                    ItemsListOffset        = 0x1F8;
-                    MoveSpeedOffset        = 0x1DC;
+                    HeroAttributesOffset = 0x1F0;
+                    ItemsListOffset = 0x1F8;
+                    MoveSpeedOffset = 0x1DC;
                     break;
                 default:
                     System.Diagnostics.Debug.Assert(false, "Impossible to run to here");

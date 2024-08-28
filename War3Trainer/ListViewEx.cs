@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Security.Permissions;
+using System.Windows.Forms;
 
 namespace War3Trainer
 {
@@ -12,7 +12,7 @@ namespace War3Trainer
         private const int WM_MOUSEWHEEL = 0x020A;
 
         public event System.EventHandler Scrolling;
-	
+
         public ListViewEx()
         {
             InitializeComponent();

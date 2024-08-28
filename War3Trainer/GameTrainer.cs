@@ -568,15 +568,15 @@ namespace War3Trainer
                 int i = 0;
                 do
                 {
-                    Console.Write(i++ +":" + tmpAddress1.ToString("X"));
+                    Console.Write(i++ + ":" + tmpAddress1.ToString("X"));
                     tmpValue1 = mem.ReadInt32((IntPtr)unchecked(tmpAddress1 + 0x24));
                     Console.Write(tmpValue1.ToString("X") + " ");
                     tmpAddress1 = War3Common.ReadGameValue2(
                         mem, _gameContext, _newChildrenArgs,
                         tmpValue1);
-                    Console.Write(tmpAddress1.ToString("X")+" ");
+                    Console.Write(tmpAddress1.ToString("X") + " ");
                     tmpAddress2 = mem.ReadUInt32((IntPtr)unchecked(tmpAddress1 + 0));
-                    Console.Write(tmpAddress2.ToString("X")+" ");
+                    Console.Write(tmpAddress2.ToString("X") + " ");
                     tmpValue1 = mem.ReadInt32((IntPtr)unchecked(tmpAddress1 + 0x24));
                     tmpValue2 = mem.ReadInt32((IntPtr)unchecked(tmpAddress1 + 0x28));
 
@@ -593,7 +593,7 @@ namespace War3Trainer
                     }
                     Console.WriteLine("\n");
                 } while (tmpValue1 > 0 && tmpValue2 > 0);
-                
+
                 // Coordinate
                 tmpValue1 = mem.ReadInt32((IntPtr)unchecked(_newChildrenArgs.ThisUnitAddress + 0x164 + 8));
                 tmpAddress1 = War3Common.ReadGameValue1(
