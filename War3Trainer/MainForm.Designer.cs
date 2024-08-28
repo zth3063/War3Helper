@@ -86,11 +86,6 @@ namespace War3Trainer
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox101 = new System.Windows.Forms.CheckBox();
             this.checkBox100 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button131 = new System.Windows.Forms.Button();
-            this.comboBox131 = new System.Windows.Forms.ComboBox();
-            this.comboBox132 = new System.Windows.Forms.ComboBox();
-            this.viewData = new War3Trainer.ListViewEx();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colOriginalValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUnsavedValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -106,7 +101,6 @@ namespace War3Trainer
             this.splitMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.viewData.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolContainer
@@ -317,7 +311,6 @@ namespace War3Trainer
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.lblEmpty);
-            this.splitMain.Panel2.Controls.Add(this.viewData);
             this.splitMain.Panel2.Controls.Add(this.txtIntroduction);
             this.splitMain.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitMain_Panel2_Paint);
             this.splitMain.Size = new System.Drawing.Size(687, 469);
@@ -907,96 +900,6 @@ namespace War3Trainer
             this.checkBox100.UseVisualStyleBackColor = true;
             this.checkBox100.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(25, 124);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 15);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "选中单位瞬移";
-            // 
-            // button131
-            // 
-            this.button131.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button131.AutoSize = true;
-            this.button131.Location = new System.Drawing.Point(157, 119);
-            this.button131.Margin = new System.Windows.Forms.Padding(0);
-            this.button131.Name = "button131";
-            this.button131.Size = new System.Drawing.Size(69, 25);
-            this.button131.TabIndex = 23;
-            this.button131.Text = "执行";
-            this.button131.UseVisualStyleBackColor = true;
-            this.button131.Click += new System.EventHandler(this.button131_Click);
-            // 
-            // comboBox131
-            // 
-            this.comboBox131.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox131.BackColor = System.Drawing.SystemColors.Menu;
-            this.comboBox131.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox131.DropDownWidth = 89;
-            this.comboBox131.FormattingEnabled = true;
-            this.comboBox131.ItemHeight = 15;
-            this.comboBox131.Items.AddRange(new object[] {
-            "Shift",
-            "Ctrl",
-            "Alt",
-            "None"});
-            this.comboBox131.Location = new System.Drawing.Point(234, 120);
-            this.comboBox131.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBox131.Name = "comboBox131";
-            this.comboBox131.Size = new System.Drawing.Size(89, 23);
-            this.comboBox131.TabIndex = 24;
-            // 
-            // comboBox132
-            // 
-            this.comboBox132.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox132.BackColor = System.Drawing.SystemColors.Menu;
-            this.comboBox132.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox132.DropDownWidth = 89;
-            this.comboBox132.FormattingEnabled = true;
-            this.comboBox132.ItemHeight = 15;
-            this.comboBox132.Items.AddRange(new object[] {
-            "J",
-            "K",
-            "L",
-            "N",
-            "M",
-            "I",
-            "O",
-            "P"});
-            this.comboBox132.Location = new System.Drawing.Point(334, 120);
-            this.comboBox132.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBox132.Name = "comboBox132";
-            this.comboBox132.Size = new System.Drawing.Size(99, 23);
-            this.comboBox132.TabIndex = 25;
-            // 
-            // viewData
-            // 
-            this.viewData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colName,
-            this.colOriginalValue,
-            this.colUnsavedValue});
-            this.viewData.Controls.Add(this.txtInput);
-            this.viewData.FullRowSelect = true;
-            this.viewData.GridLines = true;
-            this.viewData.HideSelection = false;
-            this.viewData.Location = new System.Drawing.Point(11, 91);
-            this.viewData.Margin = new System.Windows.Forms.Padding(4);
-            this.viewData.MultiSelect = false;
-            this.viewData.Name = "viewData";
-            this.viewData.Size = new System.Drawing.Size(401, 166);
-            this.viewData.TabIndex = 9;
-            this.viewData.UseCompatibleStateImageBehavior = false;
-            this.viewData.View = System.Windows.Forms.View.Details;
-            this.viewData.Scrolling += new System.EventHandler(this.viewData_Scrolling);
-            this.viewData.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.viewData_ColumnWidthChanging);
-            this.viewData.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.viewData_KeyPress);
-            this.viewData.MouseUp += new System.Windows.Forms.MouseEventHandler(this.viewData_MouseUp);
-            // 
             // colName
             // 
             this.colName.Text = "修改项目名称";
@@ -1062,8 +965,6 @@ namespace War3Trainer
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.viewData.ResumeLayout(false);
-            this.viewData.PerformLayout();
             this.ResumeLayout(false);
 
         }

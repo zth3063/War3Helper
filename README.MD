@@ -26,3 +26,5 @@ Features have been added to the original open source program War3Trainer(which h
 4.  Understand C language and use C to make simple windows library function calls
 5.  Understand C#, able to write some simple functions, familiar with common windows controls, able to use c# designer for application interface layout
 6.  The most important thing is the determination to overcome difficulties. You may encounter difficulties such as program errors, environment construction failures, promising ideas failure, etc., you can overcome these, and not only overcome these
+
+- 测试消息默认会弹出一个弹出,作为提示.
