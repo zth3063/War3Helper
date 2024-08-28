@@ -1,0 +1,186 @@
+魔兽3 内存修改器 v8 程序员手册
+[tc]天驰
+2011.3.2
+
+（地址以1.22.0.6328版本为例，数字全部是十六进制。）
+
+一、从选中单位的列表获得单位ESI
+0、也可以利用".?AUCUnitListNode@@"，以下没有用这个方法
+1、[6FAA2FFC]，参考sub_6F416AE0
+2、[上面+58+4*a2]，参考6f3a0564
+   其中a2=word ptr[上面+28]，参考6F042B76
+3、[上面+34]记为链表基地址，参考6f2cc0a8
+这个地址还有一种获得方法，用.\CPlayerWar3.cpp所在的段+90，我不知道是否准确
+4、这个基地址的结构：
+[基地址+1F0]：表头
+[基地址+1F4]：表尾
+[基地址+1F8]：表长度
+参考sub_6F415B70: 6f415b95	mov eax, [ebx+1f4]
+5、展开当前地址（假设一开始等于表头）。
+即[表头]，其结构为：
+[节点+0]：下一个节点
+[节点+4]：not 下一个节点（二者为not关系，不知道为什么要这样）
+[节点+8]：单位ESI
+参考：6F412504 mov eax, [edi+0c](eax为节点位置)
+参考：6f412518 mov edi, [esi+08](edi为选中的单位，梦寐以求的单位ESI)
+
+二、重要说明
+1、ESI的使用
+● ESI记为ThisUnit
+● [ThisUnit + 1E4]记为UnitAttributes
+● [ThisUnit + 1EC]记为HeroAttributes
+
+2、重要的内存提取算法
+算法0（6F03F180）：从GameMemory取得数据，需要索引号Index1和一个参考数ReferenceNumber1。注意Index1最高位不得为1，不然不是这个算法。建议判一下正负。
+（1）[6FAA4178]记为ThisGame
+（2）[ThisGame + 0xC]计为ThisGameMemory
+（3）[ThisGameMemory + Index1 * 8 + 4]计为Address1，返回之
+（4）[Address1 + 0x18]应当等于ReferenceNumber1，不相等游戏会异常（访问地址0），所以做修改器不用考虑这里
+
+算法1（6F4634E0）：也需要Index1
+（1）用算法0
+（2）Address1 + 0x78输出为地址
+
+算法2（6F468A20）：也需要Index1
+（1）[ThisGameMemory + Index1 * 8 + 4]，记为Address3
+（2）[Address3 + 20]为零的前提下返回[Address + 54]的内容
+
+三、单位的修改
+1、HP float
+[HPMax地址-C]
+
+2、HPMax float
+（1）ThisUnit + 98		// 参考sub_6F28A760
+（2）[上面 + 8]			// 参考sub_6F467710
+（3）用算法0解开上面
+（4）解开后内容在[上面 + 84]	// 参考6F46752F: fcompp, EDX
+
+3、MP float
+[MPMax地址-C]
+
+4、MPMax float
+（1）ThisUnit + 98		// 参考sub_6F28A760
+（2）[上面 + 28]		// 参考sub_6F467750
+（3）用算法0解开上面
+（4）解开后内容在[上面 + 84]	// 参考sub_6F467750
+
+5、经验值：[HeroAttributes + 8C]	int
+源代码：6F26DFF0
+即：getHeroExp()
+
+6、力量初值：[HeroAttributes + 94]	int
+源代码：6F353D06
+即：int __thiscall DrawHeroProperty(int *GameContext, int **HeroAttributes, int *AttributeBias, unsigned int *GBuffer)
+
+7、敏捷初值：[HeroAttributes + A8]	int
+源代码：同上
+
+8、智力初值：int
+源代码：6F0DA9D0
+即：int __fastcall getHeroIntellect_NotSure(int pAttribute1)
+[HeroAttributes + 7C + 2 * 4] 记为Index1
+[HeroAttributes + 7C + 3 * 4] 记为ReferenceNumber1
+用算法1得到地址
+
+9、攻击频率：[UnitAttributes + 1B0]	float
+源代码：6F0C64E0
+即：int __thiscall getHeroROF_NotSure(int *this, int a2, int a3, int a4)
+这是一个比值，对两种武器均适用。
+
+10、武器射程
+从UnitAttributes开始，参考：6F352CA3
+公式为[UnitAttributes + 258 + index * 8]，参考：6F0C61A5
+其中index是指武器的编号，取0和1
+
+11、其它攻击相关：int
+地址为 UnitAttributes + 下面的偏移量
+
+攻击1 - 基础1		A0
+攻击1 - 基础2		AC
+攻击1 - 倍乘		94
+攻击1 - 骰子		88
+攻击1 - 种类		F4
+
+攻击2 - 基础1		A4
+攻击2 - 基础2		B0
+攻击2 - 倍乘		98
+攻击2 - 骰子		8C
+攻击2 - 种类		F8
+
+12、移动速度：[“参数” + 70h] float 当前的移动速度
+        或者：[“参数” + 78h] float 当前的移动速度的比值
+源代码：6F201190
+即：void __thiscall sub_6F201190(int this, int a2, int a3)
+
+而“参数”的获得：似乎是将某个指针压入一系列（回调）函数中处理，但是大部分的处理函数是空白的，只有一个与移动速度有关。写修改器，就是要依次检索这些函数，直到发现这个函数后，代入这个函数的参数，计算出移动速度所需的“参数”
+
+整件事情是从6F077693开始
+（1）[ThisUnit + 1D8]记为MoveAbilityIndex
+参考：断点下在6F0776F6
+（2）算法2(MoveAbilityIndex) 记为I
+（3）此时，只要[I + 24] & [I + 28] != -1，那么：
+（4）检验[[I] + 2D4]是否等于6F201190（如果是6F052080，实际执行的函数只有ret指令）
+（5）如果是相等的，那么算法结束，用[I + 70]或者[I + 78]得到移动速度
+源代码：6f2011a1: mov eax, [ecx+70]	ecx=07c50094
+（6）如果不相等，那么下一个I = 算法2([I + 24])
+
+13、防御：[ThisUnit + E0]	float
+源代码：6F353250
+6F3532A2: mov eax, dword ptr [ebx+e0]
+即：void __thiscall sub_6F353250(int this, int a2, int a3, int a4)
+
+14、防御类型：[ThisUnit + E4]	int
+
+15、坐标X：
+[ThisUnit + 164]，参考：6F2776C4
+[上面+8]作为index，[上面+C]作为Refrence，用算法0，参考：6F464685
+[上面+78]，参考：6F38A52C
+[上面]为坐标X，参考：6f6de775
+
+16、[坐标Y] = [坐标X的地址 + 4]
+
+四、金钱的修改
+参考：6F407220，看最后一段
+即：signed int __thiscall sub_6F407220(int this, signed int a2, unsigned int a3, int a4, int a5, int a6)
+
+1、上16位
+（1）[ThisGameMemory + 1 * 8 + 4]计为Address2
+（2）Address2取高16位，低16位的含义如下
+
+2、下16位
+1P	0190
+2P	1410
+3P	26a0
+4P	3920
+5P	4bb0
+6P	5e30
+7P	70c0
+8P	8350
+9P	95d0
+10P	a860
+11P	bae0
+12P	cd70
+
+3、对每个玩家
+金钱	 +   0	int x10
+木头	 +  80	int x10
+最大人口 + 180	int
+当前人口 + 200	int
+
+五、物品列表的获取
+1、GetAnItem (SelectedUnit, ItemIndex)，其中ItemIndex = 0 - 5
+源代码：sub_6F26E0E0
+过程为：
+（1）[SelectedUnit + 1F4]记为List
+（2）如果List为0，返回0
+（3）否则判断ItemIndex是否越界，我们就不判了
+参考：6F0F04B0
+即：GetListItem(List, ItemIndex)
+（4）List + C * ItemIndex + 0x70，记为Index1，注意没有解引用啊
+（5）算法0，地址[Index1]，参考值[Index1 + 4]，结果记为RawItem
+（6）RawItem为0或者[RawItem+0x20]不为0，导致返回0
+（7）[RawItem+0x54]作为物品基地址，即为CurrentItem
+
+六、物品修改
+1、使用次数 [CurrentItem + 84]
+2、名称 [CurrentItem + 30]
